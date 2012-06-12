@@ -68,30 +68,50 @@
         // Resize the img object to the proper ratio of the window.
         var iw = $("#jq_ez_bg").children('img').width();
         var ih = $("#jq_ez_bg").children('img').height();
+
+        if (typeof(jqez.type) != 'undefined'){
+
+        	if (jqez.type == 'width'){
+
+        		var fRatio = iw/ih;
+				$("#jq_ez_bg").children('img').css("width",$(window).width() + "px");
+				$("#jq_ez_bg").children('img').css("height",Math.round($(window).width() * (1/fRatio)));
+
+        	}else{
+
+				var fRatio = ih/iw;
+				$("#jq_ez_bg").children('img').css("height",$(window).height());
+				$("#jq_ez_bg").children('img').css("width",Math.round($(window).height() * (1/fRatio)));
+
+        	}
+
+        }else{
         
-        if ($(window).width() > $(window).height()) {
-            //console.log(iw, ih);
-            if (iw > ih) {
-                var fRatio = iw/ih;
-                $("#jq_ez_bg").children('img').css("width",$(window).width() + "px");
-                $("#jq_ez_bg").children('img').css("height",Math.round($(window).width() * (1/fRatio)));
+	        if ($(window).width() > $(window).height()) {
+	            //console.log(iw, ih);
+	            if (iw > ih) {
+	                var fRatio = iw/ih;
+	                $("#jq_ez_bg").children('img').css("width",$(window).width() + "px");
+	                $("#jq_ez_bg").children('img').css("height",Math.round($(window).width() * (1/fRatio)));
 
-                var newIh = Math.round($(window).width() * (1/fRatio));
+	                var newIh = Math.round($(window).width() * (1/fRatio));
 
-                if(newIh < $(window).height()) {
-                    var fRatio = ih/iw;
-                    $("#jq_ez_bg").children('img').css("height",$(window).height());
-                    $("#jq_ez_bg").children('img').css("width",Math.round($(window).height() * (1/fRatio)));
-                }
-            } else {
-                var fRatio = ih/iw;
-                $("#jq_ez_bg").children('img').css("height",$(window).height());
-                $("#jq_ez_bg").children('img').css("width",Math.round($(window).height() * (1/fRatio)));
-            }
-        } else {
-            var fRatio = ih/iw;
-            $("#jq_ez_bg").children('img').css("height",$(window).height());
-            $("#jq_ez_bg").children('img').css("width",Math.round($(window).height() * (1/fRatio)));
+	                if(newIh < $(window).height()) {
+	                    var fRatio = ih/iw;
+	                    $("#jq_ez_bg").children('img').css("height",$(window).height());
+	                    $("#jq_ez_bg").children('img').css("width",Math.round($(window).height() * (1/fRatio)));
+	                }
+	            } else {
+	                var fRatio = ih/iw;
+	                $("#jq_ez_bg").children('img').css("height",$(window).height());
+	                $("#jq_ez_bg").children('img').css("width",Math.round($(window).height() * (1/fRatio)));
+	            }
+	        } else {
+	            var fRatio = ih/iw;
+	            $("#jq_ez_bg").children('img').css("height",$(window).height());
+	            $("#jq_ez_bg").children('img').css("width",Math.round($(window).height() * (1/fRatio)));
+	        }
+
         }
 		
 		// Center the image
